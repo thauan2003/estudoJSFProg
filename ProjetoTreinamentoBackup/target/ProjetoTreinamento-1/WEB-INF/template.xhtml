@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <ui:insert name="head"/>
+        <link id="icone" rel="Shortcut Icon" type="image/x-icon" href="../imagens/logoJCBB.png" />
+        <h:outputStylesheet>
+            .layout-main {
+                padding-top: 80px;
+                margin-left: 0px;
+            }
+        </h:outputStylesheet>
+    </h:head>
+    
+    <h:body styleClass="main-body #{guestPreferences.compact ? 'layout-compact' : null}">
+        <ui:include src="style.xhtml"/>
+        <div class="layout-wrapper #{guestPreferences.menuLayout} #{guestPreferences.orientationRTL ? 'layout-rtl' : null}">
+            <ui:include src="./topbar.xhtml" />
+            <ui:include src="./menu.xhtml" />
+
+            <div class="layout-main" style="margin-left: 300px;">
+                <ui:insert name="content"/>
+
+                <!--<ui:include src="./footer.xhtml" />-->
+            </div>
+        </div>
+
+        <p:ajaxStatus style="font-size: 34px;width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <f:facet name="start">
+                <i class="fa fa-circle-o-notch fa-spin ajax-loader" aria-hidden="true"></i>
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+
+    </h:body>
+
+</html>

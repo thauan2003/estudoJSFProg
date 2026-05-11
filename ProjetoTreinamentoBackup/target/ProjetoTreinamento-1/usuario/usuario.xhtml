@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:body>
+            <h:form id="form">
+                <p:growl id="erro" showDetail="true" showSummary="true"/>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                        <p:outputPanel id="pnlUsuario" style="width: 40vw; display: table;" styleClass="tbAlignCenter">
+                            <p:panel
+                                    header="#{empty usuarioFaces.usuarioSelected.usuCodigo ? 'CADASTRAR NOVO' : 'ALTERAR DADOS'} USUARIO"
+                                    styleClass="tbAlignCenter"
+                                    id="pnlMaster">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label fixo">
+                                            <p:inputText value="#{usuarioFaces.usuarioSelected.usuCodigo}" disabled="true" style="width: 15%"/>
+                                            <p:outputLabel for="@previous" value="Código"/>
+                                        </span>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label">
+                                            <p:inputText value="#{usuarioFaces.usuarioSelected.usuNome}" styleClass="up"
+                                                         required="true"
+                                                         style="width: 98%"
+                                                         requiredMessage="Informe o nome do Usuario"/>
+                                            <p:outputLabel for="@previous" value="Nome do usuario"/>
+                                        </span>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label">
+                                            <p:inputText value="#{usuarioFaces.usuarioSelected.usuLogin}" styleClass="up"
+                                                         required="true"
+                                                         style="width: 98%"
+                                                         requiredMessage="Informe o Login"/>
+                                            <p:outputLabel for="@previous" value="Login"/>
+                                        </span>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label">
+                                            <p:password feedback="false" id="txtSenha"
+                                                        value="#{usuarioFaces.usuarioSelected.usuSenha}"
+                                                        autocomplete="false"
+                                                        redisplay="true"
+                                                        style="width: 98%"
+                                                        required="#{empty usuarioFaces.usuarioSelected.usuCodigo}"
+                                                        requiredMessage="Campo Senha precisa ser preenchido"/>
+                                            <p:outputLabel for="txtSenha" value="Senha"/>
+                                        </span>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label fixo">
+                                            <p:selectOneMenu style="width: 98%"
+                                                             filter="true"
+                                                             filterMatchMode="contains"
+                                                             value="#{usuarioFaces.usuarioSelected.usuSetCodigo}"
+                                                             converter="SetorConverter">
+                                                <f:selectItems value="#{setorFaces.listaSetor}"/>
+                                            </p:selectOneMenu>
+                                            <p:outputLabel for="@previous" value="Setor"/>
+                                        </span>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
+                                        <p:commandButton value="Salvar" icon="pi pi-save"
+                                                         onclick="showProc()"
+                                                         styleClass="btnMenor90"
+                                                         oncomplete="hideProc();if(!args.validationFailed){doNewUsuario();}"
+                                                         action="#{usuarioFaces.doSaveOrUpdateUsuario}"
+                                                         ajax="false"
+                                                         update="form:erro, pnlUsuario"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
+                                        <p:commandButton value="Cancelar" icon="pi pi-ban"
+                                                         styleClass="btnMenor90"
+                                                         process="@this" immediate="true"
+                                                         ajax="false" action="/usuario/usuarioList?faces-redirect=true"/>
+                                    </div>
+                                </div>
+                                <h:outputScript>
+                                    upperText();
+                                </h:outputScript>
+                            </p:panel>
+                        </p:outputPanel>
+                    </div>
+
+                </div>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="pi pi-check"
+                                     oncomplete="hideProc(); doNewUsuario()"/>
+                    <p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="pi pi-times"/>
+                </p:confirmDialog>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

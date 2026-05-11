@@ -1,0 +1,387 @@
+/* 
+    Created on : May 3, 2016, 2:54:47 PM
+    Author     : honorato
+*/
+table.table-form-rel {
+    margin: auto;
+    width: auto;
+}
+table.table-form-rel > tbody > tr > td {
+    vertical-align: top;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.table-form input.ui-inputfield, 
+.table-form textarea.ui-inputfield {
+    width: calc(100% - 10px);
+}
+.table-form select {
+    width: 100%;
+}
+.table-form input.ui-inputfield.hasDatepicker {
+    width: calc(100% - 34px);
+}
+.table-form {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-form label {
+    line-height: normal;
+}
+.table-form > tbody > tr > td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.table-form > tbody > tr > td:first-child {
+    padding-left: 0;
+    padding-right: 10px;
+}
+.table-form > tbody > tr > td:last-child {
+    padding-left: 10px;
+    padding-right: 0;
+}
+.table-form > tbody > tr > td {
+    width: 8.333333333333333%;
+}
+.table-form > tbody > tr > td[colspan="2"] {
+    width: 16.66666667%;
+}
+.table-form > tbody > tr > td[colspan="3"] {
+    width: 25%;
+}
+.table-form > tbody > tr > td[colspan="4"] {
+    width: 33.33333333%;
+}
+.table-form > tbody > tr > td[colspan="5"] {
+    width: 41.66666667%;
+}
+.table-form > tbody > tr > td[colspan="6"] {
+    width: 50%;
+}
+.table-form > tbody > tr > td[colspan="7"] {
+    width: 58.33333333%;
+}
+.table-form > tbody > tr > td[colspan="8"] {
+    width: 66.66666667%;
+}
+.table-form > tbody > tr > td[colspan="9"] {
+    width: 75%;
+}
+.table-form > tbody > tr > td[colspan="10"] {
+    width: 83.33333333%;
+}
+.table-form > tbody > tr > td[colspan="11"] {
+    width: 91.66666667%;
+}
+.table-form > tbody > tr > td[colspan="12"] {
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.border-top {
+    border-top: #cccccc 1px solid;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+table.table-zebra {
+    border-collapse: collapse;
+}
+table.table-zebra > tbody > tr:nth-child(odd) > td {
+    background: #EBEBEB;
+}
+table.table-zebra > tbody > tr:nth-child(even) > td {
+    background: #FFFFFF;
+}
+table.table-zebra > tbody > tr > td {
+    padding: 4px 8px;
+}
+table.col-2 tr, 
+table.col-3 tr, 
+table.col-4 tr {
+    float: left;
+}
+table.col-2 tr {
+    width: 50%;
+}
+table.col-3 tr {
+    width: 33.333%;
+}
+table.col-4 tr {
+    width: 25%;
+}
+.headerLog {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-style: none !important;
+}
+.footerLog {
+    background: url("/Apollo/javax.faces.resource/images/ui-bg_gloss-wave_75_2191c0_500x100.png?ln=primefaces-start") repeat-x scroll 50% 50% #2191c0;
+    border: 1px solid #4297d7;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2px 5px;
+    text-align: right;
+}
+.footerLog * {
+    color: #eaf5f7 !important;
+    font-family: Arial,sans-serif !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+}
+.dlg-auto {
+    width: auto !important;
+    height: auto !important;
+}
+.panel-hidden {
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+.panel-hidden > .ui-panel-content {
+    padding: 0 !important;
+}
+fieldset {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    min-height: 35px;
+    padding: 2px 10px;
+}
+fieldset legend,
+fieldset legend label {
+    font-size: 11px;
+    line-height: normal;
+}
+fieldset.fs-orange {
+    background-color: #eeeeee;
+}
+fieldset.fs-orange > legend {
+    background-color: #fcfdfd;
+    color: #FF8C00;
+    font-weight: normal;
+}
+fieldset.fs-orange fieldset legend {
+    background-color: #eeeeee;
+}
+fieldset > legend.lg-orange {
+    background-color: #fcfdfd;
+    color: #FF8C00;
+    font-weight: normal;
+}
+fieldset > legend.lg-preto {
+    color: #000000;
+    font-weight: bold;
+}
+label.lbl-orange {
+    color: #FF8C00;
+}
+.ui-panel.panel-footer .ui-panel-footer {
+    background: url("/Apollo/javax.faces.resource/images/ui-bg_gloss-wave_75_2191c0_500x100.png?ln=primefaces-start") repeat-x scroll 50% 50% #2191c0;
+    border: none;
+    color: #eaf5f7;
+    font-weight: bold;
+    margin: -3px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #888888;
+    border-right: 1px solid #888888;
+    border-bottom: 1px solid #888888;
+}
+.ui-panel-title,
+.ui-panel-title label {
+    font-size: 11px;
+}
+.btn-green {
+    border-color: #7BB340 !important;
+    background: url(/Apollo/imagens/bg-menuitem.png) !important;
+}
+.btn-green:hover {
+    color: #009900 !important;
+    border-color: #009900 !important;
+}
+.fs-green.ui-fieldset {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+}
+.fs-green.ui-fieldset .ui-fieldset-legend {
+    border-color: #7BB340 !important;
+    background: url(/Apollo/imagens/bg-menuitem.png) !important;
+}
+.apollo-icon-filter {
+    vertical-align: middle;
+}
+.apollo-icon-filter .ui-button-text {
+    background-image: url("/Apollo/imagens/filter-icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 8px 1px;
+}
+.apollo-icon-filter:hover .ui-button-text {
+    background-image: url("/Apollo/imagens/filter-hover-icon.png");
+}
+.button-inline button {
+    margin-right: 5px;
+}
+label {
+    line-height: 23px;
+}
+.ui-datatable label,
+.ui-panel-title label {
+    line-height: normal;
+}
+.filter {
+    display: inline-block;
+    background: 
+        url("/Apollo/imagens/ui-icon/ui-icon-ffffff-triangle-1-s.png") right center no-repeat,
+        url("/Apollo/imagens/ui-bg_glass.png") right center/20px 100% no-repeat;
+    background-color: #ffffff;
+    border-radius: 6px;
+    color: #104E8B;
+    font-size: 11px;
+    border: solid 1px #87CEFF;
+    border-top: solid 3px #87CEFF;
+    outline-color:#7EC0EE;
+    margin: 0;
+    line-height: normal;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    padding-right: 23px;
+    min-height: 13px;
+    cursor: pointer;
+    z-index: 998;
+}
+.filter:hover,
+.filter.active {
+    background: 
+        url("/Apollo/imagens/ui-icon/ui-icon-2d5972-triangle-1-s.png") right center no-repeat,
+        url("/Apollo/imagens/ui-icon/bg-79c9ec.png") right center/20px 35px no-repeat;
+    background-color: #ffffff;
+    border: solid 1px #2F6D87;
+    border-top: solid 3px #87CEFF;
+}
+div .filter-option {
+    overflow-y: auto;
+}
+div .filter-option,
+table.filter-option {
+    border-collapse: collapse;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 1px 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 3px;
+    background: #ffffff;
+    z-index: 998;
+}
+/*table.filter-option tr td {
+    display: inline-block;
+    float: left;
+    position: absolute;
+    width: calc(100% - 30px);
+    left: 0;
+    padding-left: 30px;
+}*/
+.filter-option table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.filter-option > input {
+    margin: 5px 10px;
+}
+.filter-option > label {
+    font-weight: bold;
+}
+.filter-option tr td {
+    padding-left: 5px;
+    padding-right: 10px;
+}
+.filter-option tr:hover td {
+    background-color: #1e90ff;
+    color: #ffffff;
+    cursor: pointer;
+}
+.filter-option input,
+.filter-option label {
+    cursor: pointer;
+}
+.filter-option.show,
+.filter-container.show {
+    display: block;
+}
+table.filter-option.show {
+    display: table;
+}
+.filter-container {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 997;
+}
+select:disabled,
+input:disabled {
+    color: #696969 !important;
+    /*background-color: #cccccc !important;*/
+    opacity: .75 !important;
+}
+.ui-icon.fa {
+    text-indent:0px;
+    background: none !important;
+    padding-top: 1.5px;
+    font-size: 13px;
+}
+.box-message {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px;
+    -Webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    padding: 10px;
+}
+.box-info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.box-error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.box-fatal {
+    color: #000000;
+    background-color: #CC0000;
+}
+.box-warn {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.box-icon {
+    background: url("#{resource['primefaces:messages/messages.png']}") no-repeat;
+    height: 24px;
+    width: 24px;
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+    position: relative;
+}
+.box-info .box-icon {
+    background-position: 0px -68px;
+}
+.box-error .box-icon {
+    background-position: 0px 0px;
+}
+.box-fatal .box-icon {
+    background-position: 0px -34px;
+}
+.box-warn .box-icon {
+    background-position: 0px -102px;
+}

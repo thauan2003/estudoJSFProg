@@ -1,0 +1,44 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pu="http://primefaces.org/ultima"
+        xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <script src="../resources/js/jquery-titlealert.js" type="text/javascript"></script>
+    </h:head>
+
+    <style>
+        .logo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 200px;
+            height: 30px;
+            /*border: solid 1px black;*/
+            /*background: url("\#{resource['ultima-layout:images/logo.png']}") top left no-repeat;*/
+        }
+    </style>
+
+    <div class="topbar clearfix" style="background-color: #389dec; position: fixed; width: 100%;z-index: 6000; height: 65px;padding-right: 30px;padding-top: 16px;">
+
+        <div class="topbar-left">
+            <p:commandLink action="/menuSetor/menuSetor">
+                <div class="logo" style="position: relative;left: 2%; color: white; font-weight: bold; font-style: italic; font-size: 18px">Módulo treinamento</div>
+            </p:commandLink>
+        </div>
+
+        <h:form id="frmIcones">
+            <p:outputPanel id="pnlIcones">
+                <div class="topbar-right" style="position: relative; float: right; top: -34px">
+                    <p:commandButton style="margin-top: 5px" value="Sair" icon="fa fa-sign-out"
+                                     immediate="true"
+                                     ajax="false" action="/index?faces-redirect=true"/>
+                </div>
+            </p:outputPanel>
+        </h:form>
+    </div>
+
+</ui:composition>

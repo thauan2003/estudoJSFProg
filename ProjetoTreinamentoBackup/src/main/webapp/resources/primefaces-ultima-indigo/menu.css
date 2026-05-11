@@ -1,0 +1,58 @@
+.menuprincipal.ui-panelmenu .ui-panelmenu-header{
+    background: #3F51B5;
+}
+.menuprincipal.ui-panelmenu .ui-panelmenu-header.ui-state-active{
+    background: #283593;
+}
+.menuprincipal.ui-panelmenu .ui-panelmenu-header.ui-state-active a{
+    color: white;
+}
+.menuprincipal.ui-menuitem-link ui-menuitem-link-hasicon ui-corner-all{
+    background: #3F51B5; 
+}
+
+.ui-panelmenu .ui-menu-parent .ui-menu-list{
+    background: #3F51B5; 
+    color: white;
+}
+.item{
+    color: white;
+}
+.ui-menuitem-link.ui-corner-all.item{
+    color: white;
+}
+body .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link.ui-state-hover.item{ 
+    background-color: #283593 !important;
+    color: white !important; }
+.layout-menu .ui-widget-content .ui-icon.item {
+    color: white !important;
+}
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link.ui-state-hover {
+    background-color: #3F51B5 !important;
+    color: white !important;
+}
+.ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link{
+
+}
+.ui-panelmenu .ui-menu-parent .ui-menuitem-link-hasicon {
+    background: #283593;
+    color: white !important;
+}
+body .ui-panelmenu .ui-panelmenu-content .ui-menuitem .ui-menuitem-link.ui-state-hover {
+    background-color: #283593 !important;
+    color: white !important; 
+}
+.layout-menu .ui-widget-content .ui-icon {
+    color: white !important;
+}
+.ui-helper-reset {
+    background: #3F51B5 ;
+}
+.ui-panelmenu .ui-menuitem.ui-corner-all.ui-menu-parent{
+    border: solid;
+    border-color: #283593;
+}
+
+
+
+

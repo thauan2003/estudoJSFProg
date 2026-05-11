@@ -1,0 +1,61 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pu="http://primefaces.org/ultima"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <style>
+        .textAlignLeft {
+            text-align: left;
+        }
+    </style>
+    <h:form id="menuform">
+        <p:outputPanel style="display: inline-block; position: fixed;">
+            <div class="profile" style="height: 240px; background-color: #d3d3d33d; padding-top: 100px; border-top-right-radius: 6px; border-top-left-radius: 6px;box-shadow: 0px -1px 5px #cccccc;margin-top: 10px;">
+
+                <div align="center" style="position: relative;top: -10px" class="ui-icon-colorTheme">
+                    <!--contem nowrap, postos com nome muito grandes podem desconfigurar, nao altere o tamanho-->
+                    <span style="font-size: 10.4px !important;white-space: nowrap; color: #007ad9">#{utilFaces.setorLogadoBean.setDescricao}</span>
+                </div>
+
+                <div class="brasaoPlace" align="center">
+                    <p:graphicImage cache="false" id="fotoMuni2" style="height:60px;border-radius: 30px"  value="../imagens/logoJCBB.png"/>
+                </div>
+
+
+                <p:outputPanel id="pnlNomeUsuario" style="display: table; margin-left: auto; margin-right: auto">
+                    <span style="font-size: 11.5px !important;white-space: nowrap; color: #007ad9">#{utilFaces.usuarioLogadoBean.usuNome}</span>
+                </p:outputPanel>
+            </div>
+            <p:panelMenu style="width:240px; border:none; top: 50px; background: #009688;" id="menuprincipal" styleClass="menuprincipal" widgetVar="menuprincipal">
+                <p:submenu label="Cadastros">
+                    <p:menuitem value="Usuário" icon="pi pi-user" outcome="/usuario/usuarioList?faces-redirect=true"/>
+                    <p:menuitem value="Mobile" icon="pi pi-mobile"/>
+                </p:submenu>
+                <p:submenu label="Navigations">
+                    <p:menuitem value="Mobile" icon="pi pi-mobile"/>
+                </p:submenu>
+            </p:panelMenu>
+        </p:outputPanel>
+    </h:form>
+    <style>
+        .brasaoPlace {
+            background-color: white;
+            height: 60px;
+            width: 60px;
+            border: 1px solid white;
+            border-radius: 30px;
+            padding: 3px;
+            box-shadow: 1px 2px 10px 2px #cccccc;
+            vertical-align: middle;
+            align-content: center;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</ui:composition>
+

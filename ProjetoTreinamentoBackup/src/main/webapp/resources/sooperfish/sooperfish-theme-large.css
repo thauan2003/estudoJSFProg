@@ -1,0 +1,91 @@
+/* Configuration of menu width */
+
+/**
+Stylesheet for SooperFish by www.SooperThemes.com
+Author: Jurriaan Roelofs
+*/
+
+html body ul#nav ul
+,html body ul#nav ul li,
+html body ul#nav2 ul
+,html body ul#nav2 ul li {
+    width:220px;
+}
+html body ul#nav ul ul,html body ul#nav2 ul ul {
+    margin:0 0 0 215px;
+}
+
+/* Theming the menu */
+
+ul#nav,ul#nav2 {
+    width: auto;
+    float:left;
+    font-size: 0.8em;
+    border: 1px solid #878a8f;
+    border-radius: 8px;
+    background-image: url(../../imagens/bg-menu.png);
+}
+
+ul#nav ul,ul#nav2 ul {
+    background:#79c9ec;
+    border-radius: 8px;
+    border: 1px solid #878a8f;
+}
+
+ul#nav li a,ul#nav2 li a {
+    padding:10px 10px;
+    font-family:"Arial","Century Gothic","Franklin Gothic Book","Franklin Gothic",helvetica,arial,verdana,sans;
+    text-decoration:none;
+    /*background:#79c9ec;*/
+    color:#000;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+ul#nav ul li a,ul#nav2 ul li a {
+    padding:8px 15px;
+}
+
+ul#nav ul.dualcolumn,ul#nav2 ul.dualcolumn{
+    background-image: url(../../imagens/ui-bg_glass.png);
+    background-repeat: no-repeat;
+    background-size: 1px 95%;
+    background-position: center;
+}
+
+ul#nav ul.triplecolumn li,ul#nav2 ul.triplecolumn li{
+    background-image: url(../../imagens/ui-bg_glass.png);
+    background-repeat: no-repeat;
+    background-size: 1px 99%;
+    background-position: right;
+}
+
+ul#nav li a:hover
+,ul#nav li a:focus,
+ul#nav2 li a:hover
+,ul#nav2 li a:focus{
+    color:#fff;
+    background-image: url(../../imagens/bg-menuitem.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bgFix{
+    color: #fff !important;
+    background-image: url(../../imagens/bg-menuitem.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+ul#nav span.sf-arrow,ul#nav2 span.sf-arrow {
+    top:28px;
+    right:6px;
+    /*se quiser pode colocar um icone aqui com seta para baixo*/
+}
+
+ul#nav ul span.sf-arrow,ul#nav2 ul span.sf-arrow {
+    right:12px;
+    top:13px;
+    background-size: 7px 7px;
+    background-image:url(../../imagens/arrow.png);
+}

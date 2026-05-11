@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>JC Sistemas - Treinamento</title>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <ui:include src="WEB-INF/style.xhtml"/>
+
+        <h:form id="fomr">
+            <p:growl id="erro" showDetail="true" showSummary="false" life="2000"/>
+            <p:panel header="Login" id="pnlGeral" style="display: table; margin-left: auto;margin-right: auto; margin-top: 10vh">
+                <p:focus context="pnlGeral"/>
+                <table border="0" cellpadding="0" cellspacing="0" align="center">
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <h:graphicImage width="100" url="/imagens/logoJCBB.png"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height: 15px" colspan="2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="position: relative; width: 25px; text-align: right">
+                            <i class="pi pi-user" style="position: absolute; bottom: 3px;right: 0px;"></i>
+                        </td>
+                        <td align="center">
+                            <span class="ui-float-label">
+                                <p:inputText value="#{usuarioFaces.usuarioSelected.usuLogin}" size="25"
+                                             id="usuLogin"
+                                             required="false"
+                                             requiredMessage="Informe o Login"/>
+                                <p:outputLabel for="@previous" value="Usuário"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="position: relative; text-align: right">
+                            <i class="pi pi-key" style="position: absolute; bottom: 3px;right: 0px;"></i>
+                        </td>
+                        <td align="center" style="padding-top: 20px">
+                            <span class="ui-float-label">
+                                <p:password feedback="false"
+                                            title="Senha"
+                                            required="false"
+                                            requiredMessage="Informe uma senha válida"
+                                            size="25"
+                                            id="usuSenha" value="#{usuarioFaces.usuarioSelected.usuSenha}"/>
+                                <p:outputLabel for="@previous" value="Senha"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="position: relative; text-align: right">
+                            <i class="pi pi-home" style="position: absolute; bottom: 3px;right: 2px;"></i>
+                        </td>
+                        <td align="center" style="padding-top: 20px">
+                            <span class="ui-float-label">
+                                <p:password feedback="false"
+                                            title="Setor"
+                                            required="false"
+                                            requiredMessage="Informe um setor válido"
+                                            size="25"
+                                            id="usuSetor" value="#{usuarioFaces.usuarioSelected.usuSetor}"/>
+                                <p:outputLabel for="@previous" value="Setor"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2" style="padding-top: 20px">
+                            <p:commandButton id="btnLogar"
+                                             onclick="PF('mpProc').show()"
+                                             update="erro, pnlGeral"
+                                             action="#{usuarioFaces.doLogin}"
+                                             oncomplete="if(args.validationFailed){PF('mpProc').hide();}"
+                                             value="Acessar" icon="fa fa-sign-in">
+                            </p:commandButton>
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+            </p:panel>
+        </h:form>
+
+    </h:body>
+</f:view>
+</html>
+

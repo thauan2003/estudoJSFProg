@@ -1,0 +1,176 @@
+/* 
+    Created on : Aug 19, 2016, 10:13:47 AM
+    Author     : honorato
+*/
+
+body {
+    background-color: #525659;
+    margin: 0;
+    padding: 50px 0 10px 0;
+    font-family: 'Helvetica', 'Tohama', 'arial', sans-serif;
+    -webkit-print-color-adjust: exact;
+}
+
+.main-body{
+    background-color: #525659 !important;
+    margin: 0 !important;
+    padding: 50px 0 10px 0 !important;
+    font-family: 'Helvetica', 'Tohama', 'arial', sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+}
+@media print {
+    body {
+        background-color: #FFFFFF;
+        padding: 0;
+    }
+
+    .main-body{
+        background-color: #FFFFFF !important;
+        padding: 0 !important;
+    }
+    .report-header,
+    .icon-zoom {
+        display: none;
+    }
+    .container {
+        box-shadow: 0px;
+        margin: 0;
+        padding: 0;
+        zoom: 1;
+    }
+    .portrait .footer {
+        margin-top: 50px;
+    }
+    .landsacpe .footer {
+        margin-top: -50px;
+    }
+}
+.report-header {
+    background-color: #323639;
+    box-shadow: 0px 0px 4px;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    zoom: reset;
+}
+.report-header.show {
+    -webkit-transition: opacity .2s ease-in-out;
+    opacity: 1;
+}
+.report-header.hide {
+    -webkit-transition: opacity 5s ease-in-out;
+    opacity: 0;
+}
+.report-header .report-name {
+    color: #ECECEC;
+    font-weight: bold;
+    line-height: 50px;
+    font-size: 14px;
+    margin-left: 50px;
+}
+.report-header .report-options {
+    float: right;
+    height: inherit;
+    padding-right: 50px;
+}
+.icon-zoom {
+    cursor: pointer;
+    position: fixed;
+    right: 50px;
+    zoom: reset;
+}
+.header {
+    width: 100%;
+    border-collapse: collapse;
+}
+.footer {
+    border-collapse: collapse;
+    position: absolute;
+    top: 60px;
+}
+.footer tr td {
+    vertical-align: bottom;
+    font-size: 8px;
+    font-weight: bold;
+}
+.portrait .footer {
+    width: inherit;
+    height: inherit;
+
+}
+.landsacpe .footer {
+    width: inherit;
+    height: inherit;
+}
+.container {
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FFFFFF;
+    /*box-shadow: 0px 0px 4px;*/
+    zoom: 1.2;
+}
+.container.portrait {
+    padding: 20px 30px;
+    width: 595px;
+    height: 862px;
+}
+.container.landsacpe {
+    padding: 20px 30px;
+    width: 842px;
+    height: 615px;
+}
+.report-title,
+.report-subtitle {
+    font-family: Helvetica;
+    font-weight:bold;
+    font-style:normal;
+    text-align: center;
+}
+.report-title {
+    font-size:12pt;
+}
+.report-subtitle {
+    font-size:9pt;
+}
+.table-report {
+    border-collapse: collapse;
+    width: auto;
+    margin: auto;
+}
+.table-report tr th,
+.table-report tr td {
+    border: 1px solid #000000;
+    padding: 3px 5px;
+}
+.table-report tr th {
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #C0C0C0;
+}
+.table-report tr td {
+    font-size: 9px;
+}
+.param {
+    font-size: 9px;
+    font-weight: normal;
+    font-style: italic;
+}
+.param-bold {
+    font-size: 9px;
+    font-weight: bold;
+    font-style: italic;
+}
+.obs {
+    font-size: 8px;
+    font-weight: normal;
+    font-style: italic;
+}
+.center {
+    text-align: center;
+}
+.bordaLeft {
+    border-left: 1px solid #000000 !important;
+}
