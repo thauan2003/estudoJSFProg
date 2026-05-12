@@ -24,12 +24,21 @@ and open the template in the editor.
             <ui:include src="../mpProc.xhtml"/>
             <f:view>
                 <h:form id="form">
-                    <p:growl id="growl" showDetail="true"/>
+                    <p:growl id="growl" showDetail="true"/> <!--growl é aquele componente que exibe mensagens flutuantes
+                                                                showDetail="true": Permite que a mensagem tenha um título (resumo) e um detalhe explicativo logo abaixo.-->
                     <p:remoteCommand name="buscaInicial" autoRun="true"
                                      onstart="PF('mpProc').show();"
-                                     oncomplete="PF('mpProc').hide();document.getElementById('form:txtBusca').focus()"
+                                     oncomplete="PF('mpProc').hide(); document.getElementById('form:txtBusca').focus()"
                                      actionListener="#{usuarioFaces.buscaUsuariosList}" update="dataTable"/>
                     <p:focus for="txtBusca"/>
+                    <!--O actionListener Executa a funcao e atualiza a Data Table que exibe os usu-->
+                    <!--O "onstart" e "oncomplete" que possui o mpProc seria o modal do loading / o getElement... foca o cursor no inputText "txtBusca"-->
+                    <!--O p:focus reforça o foco do cursor-->
+
+
+
+
+
                     <table class="tbAlignCenter">
                         <tr>
                             <td align="center">
@@ -41,11 +50,15 @@ and open the template in the editor.
                                                 &nbsp;
                                                 <p:selectOneMenu id="comboPesquisa" value="#{usuarioFaces.optionSearchSelected}"
                                                                  style="width: 30%"
-                                                                 onchange="document.forms['form']['form:txtBusca'].focus()">
-                                                    <f:selectItems value="#{usuarioFaces.optionsSearchUsuario}"/>
-                                                </p:selectOneMenu>
+                                                                 onchange="document.forms['form']['form:txtBusca'].focus()"> <!--Quando mudar a opção o foco volta no iT "txtBusca"-->
+                                                    <f:selectItems value="#{usuarioFaces.optionsSearchUsuario}"/> <!--Conecta ao valor de um get contido no faces de Usuario-->
+                                                </p:selectOneMenu> <!--Como visto o valor do menu deve se conectar a uma variável que receberá essa string-->
                                             </td>
                                         </tr>
+
+
+
+
                                         <tr>
                                             <td align="left">
                                                 <p:inputText id="txtBusca" value="#{usuarioFaces.txtUsuarioSearch}" style="text-transform: uppercase;" size="30"/>
@@ -55,18 +68,24 @@ and open the template in the editor.
                                                                  onstart="PF('mpProc').show();" oncomplete="PF('mpProc').hide();"
                                                                  actionListener="#{usuarioFaces.buscaUsuariosList}" update="dataTable"/>
                                             </td>
+
+
+
                                             <td align="center">
                                                 <p:commandButton icon="fa fa-plus"
                                                                  styleClass="btnMenor90"
                                                                  value="Novo"
                                                                  action="#{usuarioFaces.doAddUsuario}" ajax="false"/>
-                                            </td>
+                                            </td> <ui:remove><!--A sacada desse é a seguinte: Apontará para um metodo, que realizará algumas ações necessárias
+												E depois retornará a string "usuário"; E isso ficará no lugar do action="#{}, realizando o redirecionamento	corretamente --></ui:remove>
                                         </tr>
                                     </table>
                                 </p:panel>
                             </td>
                         </tr>
                     </table>
+
+
                     <table align="center">
                         <tr>
                             <td align="center">
@@ -76,7 +95,7 @@ and open the template in the editor.
                                              rows="20"
                                              tableStyle="table-layout: auto; min-width: 600px"
                                              paginator="true"
-                                             selectionMode="sinlge"
+                                             selectionMode="single"
                                              rowKey="#{item.usuCodigo}"
                                              paginatorPosition="bottom"
                                              emptyMessage="#{msg.NotFound}">
@@ -95,9 +114,10 @@ and open the template in the editor.
                                         <p:commandLink oncomplete="PF('excluir').show();">
                                             <i class="fa fa-trash-o" style="font-size: 17px; color: #e74b02"/>
                                             <f:setPropertyActionListener target="#{usuarioFaces.usuarioSelected}" value="#{item}"/>
-                                        </p:commandLink>
-                                    </p:column>
+                                        </p:commandLink> <!--Aqui quando se pressiona no cmdLink o f:setProp... preenche o usuarioSelected, com o item sob o cursor
+                                                         então abre o dialog 'excluir' que executa o doRemoveUsuario(), e roda buscaInicial() para atualizar a listagem-->
 
+                                    </p:column>
                                     <f:facet name="footer">
                                         <p:columnGroup>
                                             <p:column colspan="3">
@@ -109,6 +129,7 @@ and open the template in the editor.
                             </td>
                         </tr>
                     </table>
+
                     <p:confirmDialog header="Confirma Exclusão?" id="excluir" message="Confirma Exclusão?" showEffect="fade" hideEffect="fade"
                                      severity="alert" widgetVar="excluir">
                         <p:commandButton value="Sim" actionListener="#{usuarioFaces.doRemoveUsuario}"
@@ -116,6 +137,10 @@ and open the template in the editor.
                         <p:commandButton value="Não" onclick="PF('excluir').hide()"/>
                     </p:confirmDialog>
                 </h:form>
+
+
+
+
                 <h:form>
                     <p:commandButton value="Imprimir"
                                      onclick="PF('mpProc').show()"
@@ -123,6 +148,8 @@ and open the template in the editor.
                                      actionListener="#{relatorios.profissional.imprimir}" >
                     </p:commandButton>
                 </h:form>
+
+
             </f:view>
         </h:body>
     </ui:define>
