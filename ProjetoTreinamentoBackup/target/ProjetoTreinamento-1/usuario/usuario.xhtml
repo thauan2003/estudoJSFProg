@@ -12,6 +12,9 @@ and open the template in the editor.
 <ui:composition template="../WEB-INF/template.xhtml">
     <ui:define name="content">
         <h:body>
+
+
+
             <h:form id="form">
                 <p:growl id="erro" showDetail="true" showSummary="true"/>
                 <div class="ui-g">
@@ -22,21 +25,32 @@ and open the template in the editor.
                                     styleClass="tbAlignCenter"
                                     id="pnlMaster">
                                 <div class="ui-g">
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
                                         <span class="ui-float-label fixo">
                                             <p:inputText value="#{usuarioFaces.usuarioSelected.usuCodigo}" disabled="true" style="width: 15%"/>
                                             <p:outputLabel for="@previous" value="Código"/>
                                         </span>
-                                    </div>
+                                    </div> <!--Campo de Código-->
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
                                         <span class="ui-float-label">
                                             <p:inputText value="#{usuarioFaces.usuarioSelected.usuNome}" styleClass="up"
                                                          required="true"
                                                          style="width: 98%"
-                                                         requiredMessage="Informe o nome do Usuario"/>
-                                            <p:outputLabel for="@previous" value="Nome do usuario"/>
+                                                         requiredMessage="Informe o nome do Usuario"/> <!--Mensagem que aparecerá no growl-->
+                                            <p:outputLabel for="@previous" value="Nome do usuario"/> <!--Vincula esse componente ao componente anterior a ele-->
                                         </span>
-                                    </div>
+                                    </div> <!--Campo de Nome-->
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
                                         <span class="ui-float-label">
                                             <p:inputText value="#{usuarioFaces.usuarioSelected.usuLogin}" styleClass="up"
@@ -45,7 +59,11 @@ and open the template in the editor.
                                                          requiredMessage="Informe o Login"/>
                                             <p:outputLabel for="@previous" value="Login"/>
                                         </span>
-                                    </div>
+                                    </div> <!--Campo de Login-->
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
                                         <span class="ui-float-label">
                                             <p:password feedback="false" id="txtSenha"
@@ -57,7 +75,11 @@ and open the template in the editor.
                                                         requiredMessage="Campo Senha precisa ser preenchido"/>
                                             <p:outputLabel for="txtSenha" value="Senha"/>
                                         </span>
-                                    </div>
+                                    </div> <!--Campo de Senha-->
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
                                         <span class="ui-float-label fixo">
                                             <p:selectOneMenu style="width: 98%"
@@ -70,6 +92,10 @@ and open the template in the editor.
                                             <p:outputLabel for="@previous" value="Setor"/>
                                         </span>
                                     </div>
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
                                         <p:commandButton value="Salvar" icon="pi pi-save"
                                                          onclick="showProc()"
@@ -79,6 +105,11 @@ and open the template in the editor.
                                                          ajax="false"
                                                          update="form:erro, pnlUsuario"/>
                                     </div>
+
+
+
+
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
                                         <p:commandButton value="Cancelar" icon="pi pi-ban"
                                                          styleClass="btnMenor90"
@@ -86,12 +117,16 @@ and open the template in the editor.
                                                          ajax="false" action="/usuario/usuarioList?faces-redirect=true"/>
                                     </div>
                                 </div>
+
+
+
                                 <h:outputScript>
                                     upperText();
                                 </h:outputScript>
                             </p:panel>
                         </p:outputPanel>
                     </div>
+
 
                 </div>
                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

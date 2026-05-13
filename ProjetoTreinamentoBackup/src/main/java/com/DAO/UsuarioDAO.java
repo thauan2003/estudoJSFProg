@@ -24,6 +24,7 @@ public class UsuarioDAO extends GenericDAO {
     public UsuarioDAO() {
         this.session = getSession();
     }
+
     public int addUsuario(Usuario usuario) {
         setAtualizar(false);
             saveOrUpdatePojo(usuario);
@@ -33,9 +34,11 @@ public class UsuarioDAO extends GenericDAO {
                 return usuario.getUsuCodigo();
             }   
     }
+
     public Usuario getUsuario(int usuarioID) {
         return getPojo(Usuario.class, usuarioID);
     }
+
     public void updateUsuario(Usuario usuario) {
         setAtualizar(true);
         saveOrUpdatePojo(usuario);

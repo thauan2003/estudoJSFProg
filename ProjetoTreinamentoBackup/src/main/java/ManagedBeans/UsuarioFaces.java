@@ -330,27 +330,35 @@ public class UsuarioFaces implements Serializable {
    }
 
    public void buscaUsuariosList() {
-      listUsuarios = new ArrayList<>();
+      listUsuarios = new ArrayList<>(); //Instancia uma nova arraylist
+
       if (jcUtil.isEmpty(optionSearchSelected)) {
          return;
-      }
-      String claNome = "true", claCodigo = "true";
+      } //Filtra o caso de não haver opção selecionada, e finaliza o comando
+
+      String claNome = "true", claCodigo = "true"; /*Inicializa dessa maneira para que na sintaxe concatenada na última linha nunca de erro,
+                                                   pois no caso de não possuir valor no claNome ou no claCodigo, o valor True possibilitará a query ser executada*/
+
       if ("3".equals(optionSearchSelected)) {
          listUsuarios = new UsuarioDAO().getUsuarios();
          return;
-      } else if ("1".equals(optionSearchSelected)) {
+      }
+
+      else if ("1".equals(optionSearchSelected)) {
          if (jcUtil.isEmpty(txtUsuarioSearch)) {
             return;
          }
          claNome = "usuNome like '%" + txtUsuarioSearch + "%'";
-      } else if ("2".equals(optionSearchSelected)) {
+      }
+
+      else if ("2".equals(optionSearchSelected)) {
          if (jcUtil.isEmpty(txtUsuarioSearch)) {
             return;
          }
          claNome = "usuCodigo = " + txtUsuarioSearch;
       }
 
-      listUsuarios = new UsuarioDAO().getUsuarioByClausula(claNome+" and "+claCodigo);
+      listUsuarios = new UsuarioDAO().getUsuarioByClausula(claNome+" and "+claCodigo); //Essa linha que falei acima
    }
 
    public void onRowSelect(SelectEvent event) {
