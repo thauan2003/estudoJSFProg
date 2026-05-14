@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:body>
+        <ui:include src="../mpProc.xhtml"/>
+        <f:view>
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true"/>
+
+                <p:remoteCommand name="buscaInicial" autoRun="true"
+                                 onstart="PF('mpProc').show();"
+                                 oncomplete="PF('mpProc').hide(); document.getElementById('form:txtBuscaBairro').focus()"
+                                 actionListener="#{bairroFaces.buscaBairrosList()}" update="dataTableBairro"/>
+                <p:focus for="txtBuscaBairro"/>
+
+
+
+
+                    <table class="tbAlignCenter">
+                        <tr>
+                            <td align="center">
+                                <p:panel header="Pesquisar Bairro">
+                                    <table>
+                                        <tr>
+                                            <td align="left">
+                                                <h:outputLabel value="Opções:"/>
+                                                &nbsp;
+                                                <p:selectOneMenu id="comboPesquisa" value="#{bairroFaces.optionSearchSelected}"
+                                                                 style="width: 30%"
+                                                                 onchange="document.forms['form']['form:txtBuscaBairro'].focus()">
+                                                    <f:selectItems value="#{bairroFaces.optionsSearchBairro}"/>
+                                                </p:selectOneMenu>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                <p:inputText id="txtBuscaBairro" value="#{bairroFaces.txtBairroSearch}" placeholder="Digite algum termo..."
+                                                style="text-transform: uppercase;" size="30"/>
+                                                &nbsp;
+                                                <p:commandButton value="Pesquisar" icon="fa fa-search"
+                                                                 styleClass="btnMenor90"
+                                                                 actionListener="#{bairroFaces.buscaBairrosList()}"
+                                                                 update="dataTableBairro" onstart="PF('mpProc').show();"
+                                                                 oncomplete="PF('mpProc').hide();"/>
+                                            </td>
+
+                                            <td align="left">
+                                                <p:commandButton icon="fa fa-plus"
+                                                                 styleClass="btnMenor90"
+                                                                 value="Novo"
+                                                                 action="#{bairroFaces.doAddBairro()}" ajax="false"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p:panel>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table align="center">
+                        <tr>
+                            <td align="center">
+                                <p:dataTable id="dataTableBairro"
+                                             value="#{bairroFaces.listBairros}"
+                                             var="item"
+                                             rows="15"
+                                             tableStyle="table-layout: auto; min-width: 700px"
+                                             paginator="true"
+                                             paginatorPosition="bottom"
+                                             selectionMode="single"
+                                             rowKey="#{item.codigoBairro}"
+                                             emptyMessage="#{msg.NotFound}">
+
+                                    <p:ajax event="rowSelect" listener="#{bairroFaces.onRowSelect}"/>
+
+                                    <p:column sortBy="#{item.codigoBairro}" headerText="Código" style="width: 100px">
+                                        <p:outputLabel value="#{item.codigoBairro}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Bairro" sortBy="#{item.bairro}">
+                                        <p:outputLabel value="#{item.bairro}"/>
+                                    </p:column>
+
+
+                                    <p:column style="width:40px; text-align: center" headerText="">
+                                        <p:commandLink oncomplete="PF('excluir').show();">
+                                            <i class="fa fa-trash-o" style="font-size: 17px; color: #e74b02"/>
+                                            <f:setPropertyActionListener value="#{item}" target="#{bairroFaces.bairroSelected}"/>
+                                        </p:commandLink>
+                                    </p:column>
+
+                                    <f:facet name="footer">
+                                        <p:columnGroup>
+                                            <p:column colspan="3">
+                                                <h:outputLabel value="Total Reg. #{bairroFaces.sizeListBairros}" style="font-size: 10px;font-family: Arial,Helvetica,sans-serif;font-weight: bold;"/>
+                                            </p:column>
+                                        </p:columnGroup>
+                                    </f:facet>
+                                </p:dataTable>
+                            </td>
+                        </tr>
+                    </table>
+
+                        <p:confirmDialog header="Confirma Exclusão?" id="excluir" message="Confirma Exclusão?" showEffect="fade" hideEffect="fade"
+                                         severity="alert" widgetVar="excluir">
+                            <p:commandButton value="Sim" actionListener="#{bairroFaces.doRemoveBairro()}"
+                                             update="growl" onclick="PF('excluir').hide();PF('mpProc').show();" oncomplete="buscaInicial();"/>
+                            <p:commandButton value="Não" onclick="PF('excluir').hide()"/>
+                        </p:confirmDialog>
+
+
+                </h:form>
+            </f:view>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

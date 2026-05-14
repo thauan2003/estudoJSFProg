@@ -26,5 +26,7 @@
         <mapping class="com.Bean.Setor"/>
         <mapping class="com.Bean.Usuario"/>
         <mapping class="com.Bean.Auditoria"/>
+        <mapping class="com.Bean.Logradouro"/>
+        <mapping class="com.Bean.Bairro"/>
 </session-factory>
 </hibernate-configuration>

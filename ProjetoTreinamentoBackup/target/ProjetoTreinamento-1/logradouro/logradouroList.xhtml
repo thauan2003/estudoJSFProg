@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:body>
+        <ui:include src="../mpProc.xhtml"/>
+        <f:view>
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true"/>
+
+                <p:remoteCommand name="buscaInicial" autoRun="true"
+                                 onstart="PF('mpProc').show();"
+                                 oncomplete="PF('mpProc').hide(); document.getElementById('form:txtBuscaLogra').focus()"
+                                 actionListener="#{logradouroFaces.buscaLogradourosList}" update="dataTableLogra"/>
+                <p:focus for="txtBuscaLogra"/>
+
+
+
+
+                    <table class="tbAlignCenter">
+                        <tr>
+                            <td align="center">
+                                <p:panel header="Pesquisar Logradouro">
+                                    <table>
+                                        <tr>
+                                            <td align="left">
+                                                <h:outputLabel value="Opções:"/>
+                                                &nbsp;
+                                                <p:selectOneMenu id="comboPesquisa" value="#{logradouroFaces.optionSearchSelected}"
+                                                                 style="width: 30%"
+                                                                 onchange="document.forms['form']['form:txtBuscaLogra'].focus()">
+                                                    <f:selectItems value="#{logradouroFaces.optionsSearchLogradouro}"/>
+                                                </p:selectOneMenu>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                <p:inputText id="txtBuscaLogra" value="#{logradouroFaces.txtLogradouroSearch}" placeholder="Digite algum termo..."
+                                                style="text-transform: uppercase;" size="30"/>
+                                                &nbsp;
+                                                <p:commandButton value="Pesquisar" icon="fa fa-search"
+                                                                 styleClass="btnMenor90"
+                                                                 actionListener="#{logradouroFaces.buscaLogradourosList}"
+                                                                 update="dataTableLogra" onstart="PF('mpProc').show();"
+                                                                 oncomplete="PF('mpProc').hide();"/>
+                                            </td>
+
+                                            <td align="left">
+                                                <p:commandButton icon="fa fa-plus"
+                                                                 styleClass="btnMenor90"
+                                                                 value="Novo"
+                                                                 action="#{logradouroFaces.doAddLogradouro()}" ajax="false"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p:panel>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table align="center">
+                        <tr>
+                            <td align="center">
+                                <p:dataTable id="dataTableLogra"
+                                             value="#{logradouroFaces.listLogradouros}"
+                                             var="item"
+                                             rows="15"
+                                             tableStyle="table-layout: auto; min-width: 1000px"
+                                             paginator="true"
+                                             paginatorPosition="bottom"
+                                             selectionMode="single"
+                                             rowKey="#{item.codigoLogra}"
+                                             emptyMessage="#{msg.NotFound}">
+
+                                    <p:ajax event="rowSelect" listener="#{logradouroFaces.onRowSelect}"/>
+
+                                    <p:column sortBy="#{item.codigoLogra}" headerText="Código" style="width: 100px">
+                                        <p:outputLabel value="#{item.codigoLogra}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Endereço" sortBy="#{item.enderecoLogra}">
+                                        <p:outputLabel value="#{item.enderecoLogra}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Número" sortBy="#{item.numeroLogra}">
+                                        <p:outputLabel value="#{item.numeroLogra}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Complemento" sortBy="#{item.complementoLogra}">
+                                        <p:outputLabel value="#{item.complementoLogra}"/>
+                                    </p:column>
+
+                                    <p:column headerText="Tipo" sortBy="#{item.tipoLogra}">
+                                        <p:outputLabel value="#{item.tipoLogra}"/>
+                                    </p:column>
+
+                                    <p:column style="width:40px; text-align: center" headerText="">
+                                        <p:commandLink oncomplete="PF('excluir').show();">
+                                            <i class="fa fa-trash-o" style="font-size: 17px; color: #e74b02"/>
+                                            <f:setPropertyActionListener value="#{item}" target="#{logradouroFaces.logradouroSelected}"/>
+                                        </p:commandLink>
+                                    </p:column>
+
+                                    <f:facet name="footer">
+                                        <p:columnGroup>
+                                            <p:column colspan="3">
+                                                <h:outputLabel value="Total Reg. #{logradouroFaces.sizeListLogradouros}" style="font-size: 10px;font-family: Arial,Helvetica,sans-serif;font-weight: bold;"/>
+                                            </p:column>
+                                        </p:columnGroup>
+                                    </f:facet>
+                                </p:dataTable>
+                            </td>
+                        </tr>
+                    </table>
+
+                        <p:confirmDialog header="Confirma Exclusão?" id="excluir" message="Confirma Exclusão?" showEffect="fade" hideEffect="fade"
+                                         severity="alert" widgetVar="excluir">
+                            <p:commandButton value="Sim" actionListener="#{logradouroFaces.doRemoveLogradouro()}"
+                                             update="growl" onclick="PF('excluir').hide();PF('mpProc').show();" oncomplete="buscaInicial();"/>
+                            <p:commandButton value="Não" onclick="PF('excluir').hide()"/>
+                        </p:confirmDialog>
+
+
+                </h:form>
+            </f:view>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

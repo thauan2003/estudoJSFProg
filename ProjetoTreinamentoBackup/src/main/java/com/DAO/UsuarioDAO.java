@@ -43,11 +43,13 @@ public class UsuarioDAO extends GenericDAO {
         setAtualizar(true);
         saveOrUpdatePojo(usuario);
     }
+
     public void removeUsuario(Usuario usuario) {
         removePojo(usuario);
     }
+
     public List<Usuario> getUsuarios() {
-        return getPureList(Usuario.class, "from Usuario ar");
+        return getPureList(Usuario.class, "from Usuario al");
     }
 
     public List<Usuario> getUsuarioByClausula(String clausula){
@@ -63,4 +65,5 @@ public class UsuarioDAO extends GenericDAO {
         }
         return new ArrayList<>();
     }
+
 }

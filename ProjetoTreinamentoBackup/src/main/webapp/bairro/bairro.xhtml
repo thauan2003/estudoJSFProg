@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:body>
+
+            <h:form id="form">
+                <p:growl id="erro" showDetail="true" showSummary="true"/>
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                        <p:outputPanel id="pnlBairro" style="width: 40vw; display: table;" styleClass="tbAlignCenter">
+                            <p:panel header="#{empty bairroFaces.bairroSelected.codigoBairro ? 'CADASTRAR NOVO' : 'ALTERAR DADOS'} BAIRRO"
+                                     styleClass="tbAlignCenter"
+                                     id="pnlMaster">
+
+                                <div class="ui-g">
+
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label fixo">
+                                            <p:inputText value="#{bairroFaces.bairroSelected.codigoBairro}" disabled="true" style="width: 15%"/>
+                                            <p:outputLabel value="Código" for="@previous"/>
+                                        </span>
+                                    </div>
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                    <span class="ui-float-label">
+                                        <p:inputText value="#{bairroFaces.bairroSelected.bairro}" styleClass="up"
+                                                     required="true"
+                                                     style="width: 98%"
+                                                     requiredMessage="Informe o Bairro"/>
+                                        <p:outputLabel value="Bairro" for="@previous"/>
+                                    </span>
+                                </div>
+
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
+                                    <p:commandButton value="Salvar" icon="pi pi-save"
+                                                     onclick="showProc()"
+                                                     styleClass="btnMenor90"
+                                                     oncomplete="hideProc();if(!args.validationFailed){doNewBairro();}"
+                                                     action="#{bairroFaces.doSaveOrUpdateBairro()}"
+                                                     update="form:erro, pnlMaster"/>
+                                </div>
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-6" style="margin-top: 10px; text-align: center">
+                                    <p:commandButton value="Cancelar" icon="pi pi-ban"
+                                                     styleClass="btnMenor90"
+                                                     action="/bairro/bairroList?faces-redirect=true"
+                                                     process="@this" immediate="true" ajax="false"
+                                                     />
+                                </div>
+                                </div>
+
+                                <h:outputScript>
+                                    upperText();
+                                </h:outputScript>
+                            </p:panel>
+                        </p:outputPanel>
+                    </div>
+                </div>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="pi pi-check"
+                                     oncomplete="hideProc(); doNewBairro()"/>
+                    <p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="pi pi-times"/>
+                </p:confirmDialog>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

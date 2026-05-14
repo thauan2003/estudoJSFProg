@@ -51,6 +51,8 @@ public class UsuarioFaces implements Serializable {
    @Inject
    private UtilFaces utilFaces;
 
+
+
    public List<Usuario> getSelectedUsuarios() {
       return selectedUsuarios;
    }
@@ -158,10 +160,10 @@ public class UsuarioFaces implements Serializable {
 
 
    public String doAddUsuario() {
-      int usuario = new jcUtil().getUsuarioLogadoBean().getUsuCodigo();
-      int setor = new jcUtil().getSetorLogadoBean().getSetCodigo();
-      usuarioSelected = new Usuario(setor, usuario);
-      listUsuarios = usuarioDAO.getUsuarios();
+//      int usuario = new jcUtil().getUsuarioLogadoBean().getUsuCodigo();
+//      int setor = new jcUtil().getSetorLogadoBean().getSetCodigo();
+      usuarioSelected = new Usuario();
+//      listUsuarios = usuarioDAO.getUsuarios();
       return "usuario";
    }
 
@@ -330,35 +332,27 @@ public class UsuarioFaces implements Serializable {
    }
 
    public void buscaUsuariosList() {
-      listUsuarios = new ArrayList<>(); //Instancia uma nova arraylist
-
+      listUsuarios = new ArrayList<>();
       if (jcUtil.isEmpty(optionSearchSelected)) {
          return;
-      } //Filtra o caso de não haver opção selecionada, e finaliza o comando
-
-      String claNome = "true", claCodigo = "true"; /*Inicializa dessa maneira para que na sintaxe concatenada na última linha nunca de erro,
-                                                   pois no caso de não possuir valor no claNome ou no claCodigo, o valor True possibilitará a query ser executada*/
-
+      }
+      String claNome = "true", claCodigo = "true";
       if ("3".equals(optionSearchSelected)) {
          listUsuarios = new UsuarioDAO().getUsuarios();
          return;
-      }
-
-      else if ("1".equals(optionSearchSelected)) {
+      } else if ("1".equals(optionSearchSelected)) {
          if (jcUtil.isEmpty(txtUsuarioSearch)) {
             return;
          }
          claNome = "usuNome like '%" + txtUsuarioSearch + "%'";
-      }
-
-      else if ("2".equals(optionSearchSelected)) {
+      } else if ("2".equals(optionSearchSelected)) {
          if (jcUtil.isEmpty(txtUsuarioSearch)) {
             return;
          }
          claNome = "usuCodigo = " + txtUsuarioSearch;
       }
 
-      listUsuarios = new UsuarioDAO().getUsuarioByClausula(claNome+" and "+claCodigo); //Essa linha que falei acima
+      listUsuarios = new UsuarioDAO().getUsuarioByClausula(claNome+" and "+claCodigo);
    }
 
    public void onRowSelect(SelectEvent event) {

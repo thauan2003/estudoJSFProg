@@ -32,16 +32,30 @@
                 </p:outputPanel>
             </div>
             <p:panelMenu style="width:240px; border:none; top: 50px; background: #009688;" id="menuprincipal" styleClass="menuprincipal" widgetVar="menuprincipal">
+
+
                 <p:submenu label="Cadastros">
                     <p:menuitem value="Usuário" icon="pi pi-user" outcome="/usuario/usuarioList?faces-redirect=true"/>
+
+                    <p:menuitem value="Logradouro" icon="fa fa-home" outcome="/logradouro/logradouroList?faces-redirect=true"/>
+
+                    <p:menuitem value="Bairro" icon="fa fa-location-arrow" outcome="/bairro/bairroList?faces-redirect=true"/>
+
                     <p:menuitem value="Mobile" icon="pi pi-mobile"/>
                 </p:submenu>
+
+
                 <p:submenu label="Navigations">
                     <p:menuitem value="Mobile" icon="pi pi-mobile"/>
                 </p:submenu>
+
+
             </p:panelMenu>
         </p:outputPanel>
     </h:form>
+
+
+
     <style>
         .brasaoPlace {
             background-color: white;
