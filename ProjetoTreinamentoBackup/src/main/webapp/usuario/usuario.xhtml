@@ -49,6 +49,47 @@ and open the template in the editor.
                                     </div> <!--Campo de Nome-->
 
 
+                                    <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">
+                                        <span class="ui-float-label fixo">
+                                        <p:selectOneMenu id="comboBairros" value="#{usuarioFaces.usuarioSelected.usuCodigoBairro}"
+                                                         style="width: 98%"
+                                                         filter="true"
+                                                         filterMatchMode="contains"
+                                                         converter="BairroConverter">
+                                            <f:selectItems value="#{bairroFaces.listBairrosDescricao}"/>
+                                        </p:selectOneMenu>
+                                        <p:outputLabel for="@previous" value="Bairro"/>
+                                        </span>
+                                    </div>
+
+
+                                    <div class="ui-g-12 ui-lg-12" style="margin-top: 8px;" >
+                                        <div class="ui-g-8">
+                                            <span class="ui-float-label fixo">
+                                                <p:autoComplete id="autoCompleteLogra" value="#{usuarioFaces.usuarioSelected.usuCodigoLogra}"
+                                                                completeMethod="#{logradouroFaces.lograBuscaAutoComplete}" var="logra"
+                                                                itemLabel="#{logra.enderecoLogra}"
+                                                                itemValue="#{logra}"
+                                                                converter="LogradouroConverter"
+                                                                required="false">
+
+                                                    <p:ajax event="itemSelect"
+                                                            update="numLogra"
+                                                            listener="#{usuarioFaces.verificarSelecao}"/>
+                                                </p:autoComplete>
+                                                <p:outputLabel for="@previous" value="Logradouro"/>
+                                            </span>
+                                        </div>
+
+                                        <div class="ui-g-3">
+                                            <span class="ui-float-label">
+                                                <p:inputText id="numLogra" value="#{usuarioFaces.usuarioSelected.usuCodigoLogra.numeroLogra}"
+                                                             required="false"/>
+                                                <p:outputLabel for="@previous" value="Nrº"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
 
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-12" style="margin-top: 8px">

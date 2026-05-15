@@ -1,5 +1,6 @@
 package com.Bean;
 
+import com.Relatorios.Profissional;
 import com.Util.PropertyChange;
 
 import javax.persistence.*;
@@ -50,12 +51,26 @@ public class Usuario implements java.io.Serializable {
    @JoinColumn(name = "usuSetCodigo", referencedColumnName = "setCodigo")
    private Setor usuSetCodigo;
 
+   @ManyToOne(optional = true, cascade = CascadeType.ALL)//Deixei o Opcional ligado, com isso, o preenchimento de um Logradouro para um Usuário não é obrigatório
+   @JoinColumn(name= "usuCodigoLogra", referencedColumnName = "codigoLogra")
+   private Logradouro usuCodigoLogra;
+
+   @ManyToOne(optional = true) //Deixei o Opcional ligado, com isso, o preenchimento de um Logradouro para um Usuário não é obrigatório
+   @JoinColumn(name= "usuCodigoBairro", referencedColumnName = "codigoBairro")
+   private Bairro usuCodigoBairro;
+
    @Transient
    private PropertyChange propertyChange = new PropertyChange(this);
+
+
 
    public PropertyChange getPropertyChange() {
       return propertyChange;
    }
+
+   @Transient
+   @Column(name = "usuProCodigo")
+   private Profissional usuProCodigo;
 
    public Usuario() {
    }
@@ -65,7 +80,24 @@ public class Usuario implements java.io.Serializable {
       setCodUsuario(usuario);
    }
 
-  public Integer getUsuCodigo() {
+
+    public Logradouro getUsuCodigoLogra() {
+        return usuCodigoLogra;
+    }
+
+    public void setUsuCodigoLogra(Logradouro usuCodigoLogra) {
+        this.usuCodigoLogra = usuCodigoLogra;
+    }
+
+   public Bairro getUsuCodigoBairro() {
+      return usuCodigoBairro;
+   }
+
+   public void setUsuCodigoBairro(Bairro usuCodigoBairro) {
+      this.usuCodigoBairro = usuCodigoBairro;
+   }
+
+   public Integer getUsuCodigo() {
       return usuCodigo;
    }
 

@@ -18,9 +18,12 @@ public class SetorDAO extends GenericDAO {
         this.session = session;
     }
 
+
     public SetorDAO() {
         this.session = getSession();
     }
+
+
     public int addSetor(Setor setor) {
         setAtualizar(false);
             saveOrUpdatePojo(setor);
@@ -30,9 +33,13 @@ public class SetorDAO extends GenericDAO {
                 return setor.getSetCodigo();
             }   
     }
+
+
     public Setor getSetor(int setorID) {
         return getPojo(Setor.class, setorID);
     }
+
+
     public void updateSetor(Setor setor) {
         setAtualizar(true);
         saveOrUpdatePojo(setor);
@@ -40,6 +47,8 @@ public class SetorDAO extends GenericDAO {
     public void removeSetor(Setor setor) {
         removePojo(setor);
     }
+
+
     public List<Setor> getSetors() {
         return getPureList(Setor.class, "from Setor ar");
     }

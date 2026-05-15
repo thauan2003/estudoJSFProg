@@ -2,6 +2,7 @@ package ManagedBeans;
 
 import com.Bean.*;
 import com.Bean.Usuario;
+import com.DAO.LogradouroDAO;
 import com.DAO.SetorDAO;
 import com.DAO.UsuarioDAO;
 import com.HibernateUtil.HibernateUtil;
@@ -192,6 +193,12 @@ public class UsuarioFaces implements Serializable {
    }
 
    public String doRemoveUsuario() {
+      Usuario usuarioLocal = usuarioSelected;
+      LogradouroDAO daoLocal = new LogradouroDAO();
+      Logradouro logradouroLocal = daoLocal.getLogradouro(usuarioSelected.getUsuCodigoLogra().getCodigoLogra());
+      if (logradouroLocal.getEnderecoLogra() != null){
+         MensagensErros.isErro();
+         return "";      }
       usuarioDAO.removeUsuario(usuarioSelected);
       cachedUsuarios = null;
       if (MensagensErros.isErro()) {
@@ -286,6 +293,15 @@ public class UsuarioFaces implements Serializable {
          e.printStackTrace();
       }
 
+   }
+
+   public void verificarSelecao() {
+      if (usuarioSelected.getUsuCodigoLogra() != null) {
+         System.out.println("Logradouro selecionado: " + usuarioSelected.getUsuCodigoLogra().getEnderecoLogra());
+         System.out.println("Número que veio do banco: " + usuarioSelected.getUsuCodigoLogra().getNumeroLogra());
+      } else {
+         System.out.println("Objeto ainda está nulo!");
+      }
    }
 
    public void cleanSession() {

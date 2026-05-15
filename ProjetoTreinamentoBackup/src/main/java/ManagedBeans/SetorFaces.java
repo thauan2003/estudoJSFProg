@@ -197,7 +197,8 @@ public class SetorFaces implements Serializable {
             toReturn_A.add(new SelectItem(ar, ar.getSetDescricao()));
         }
         return toReturn_A;
-    }
+    } /*Esse método que possibilita guardar um id no Banco e mostrar um valor String na tela, em resumo ele: Cria uma lista de SelectItem, utiliza o DAO para dar um
+        get numa lista de todos os Setores(obj) corre 1 setor por 1, e adicionar o valor setDescricao na lista criada, e retorna essa lista*/
 
     public List<Setor> setorBuscaAutoComplete(String busca) {
         busca = busca.replace(" - ", "");

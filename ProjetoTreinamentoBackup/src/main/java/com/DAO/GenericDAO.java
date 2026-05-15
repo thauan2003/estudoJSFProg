@@ -13,6 +13,7 @@ import com.Util.jcUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.spi.SQLExceptionConverter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

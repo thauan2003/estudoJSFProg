@@ -113,8 +113,8 @@ and open the template in the editor.
                                     <p:column style="width:40px; text-align: center" headerText="">
                                         <p:commandLink oncomplete="PF('excluir').show();">
                                             <i class="fa fa-trash-o" style="font-size: 17px; color: #e74b02"/>
-                                            <f:setPropertyActionListener target="#{usuarioFaces.usuarioSelected}" value="#{item}"/>
-                                        </p:commandLink> <!--Aqui quando se pressiona no cmdLink o f:setProp... preenche o usuarioSelected, com o item sob o cursor
+                                        <f:setPropertyActionListener target="#{usuarioFaces.usuarioSelected}" value="#{item}"/>
+                                    </p:commandLink> <!--Aqui quando se pressiona no cmdLink o f:setProp... preenche o usuarioSelected, com o item sob o cursor
                                                          então abre o dialog 'excluir' que executa o doRemoveUsuario(), e roda buscaInicial() para atualizar a listagem-->
 
                                     </p:column>

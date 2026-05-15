@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Named
@@ -254,6 +255,15 @@ public class BairroFaces implements Serializable {
 
         listBairros = new BairroDAO().getBairroByClausula(claBairro+" and "+claCodigo);
     }
+
+    public List<SelectItem> getListBairrosDescricao(){
+        List<SelectItem> retornoBairros = new LinkedList<SelectItem>();
+        for (Bairro ar : bairroDAO.getBairros()){
+            retornoBairros.add(new SelectItem(ar, ar.getBairro()));
+        }
+        return retornoBairros;
+    }
+
 
     public void onRowSelect(SelectEvent event) {
         bairroSelected = (Bairro) event.getObject();

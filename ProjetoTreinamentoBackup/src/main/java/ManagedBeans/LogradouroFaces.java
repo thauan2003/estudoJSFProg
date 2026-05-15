@@ -2,13 +2,14 @@ package ManagedBeans;
 
 import java.io.Serializable;
 
-import com.Bean.Logradouro;
-import com.Bean.Setor;
+import com.Bean.*;
 import com.DAO.LogradouroDAO;
 import com.DAO.SetorDAO;
 import com.HibernateUtil.HibernateUtil;
 import com.Util.MensagensErros;
 import com.Util.jcUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.primefaces.event.SelectEvent;
 
 import javax.enterprise.context.SessionScoped;
@@ -27,15 +28,22 @@ import java.util.List;
 @SessionScoped
 public class LogradouroFaces implements Serializable {
 
-    private List<Logradouro> cachedLogradouros = null;
+    //Instanciamentos Diretos:
     private LogradouroDAO logradouroDAO = new LogradouroDAO();
+    @Inject
+    private UtilFaces utilFaces;
+
+    //Instanciamentos que serão tratados
+    private List<Logradouro> cachedLogradouros = null;
     private Logradouro logradouroSelected;
     private List<Logradouro> listLogradouros = null;
     private List<Logradouro> selectedLogradouros;
     private Logradouro logradouro;
+    private Setor setor;
+
+    //Instanciamentos Locais
     private String chave;
     private String include = "/WEB-INF/template.xhtml";
-    private Setor setor;
     private SelectItem[] optionsLogradouro = {
             new SelectItem("Aeroporto", "Aeroporto"),
             new SelectItem("Alameda", "Alameda"),
@@ -63,15 +71,10 @@ public class LogradouroFaces implements Serializable {
             new SelectItem("2", "Código"),
             new SelectItem("3", "Listar Todos")
     };
-
     private String txtLogradouroSearch = null;
     private String optionSearchSelected;
 
-    @Inject
-    private UtilFaces utilFaces;
-
-
-
+    //Getters e Setters(alguns com tratamentos internos)
 
     public UtilFaces getUtilFaces() {
         return utilFaces;
@@ -147,9 +150,6 @@ public class LogradouroFaces implements Serializable {
         this.selectedLogradouros = selectedLogradouros;
     }
 
-
-
-
     public List<Logradouro> getListLogradouros() {
         return listLogradouros;
     }
@@ -157,8 +157,6 @@ public class LogradouroFaces implements Serializable {
     public void setListLogradouros(List<Logradouro> listLogradouros) {
         this.listLogradouros = listLogradouros;
     }
-
-
 
     public Logradouro getLogradouroSelected() {
         if (logradouroSelected == null) {
@@ -171,8 +169,6 @@ public class LogradouroFaces implements Serializable {
         this.logradouroSelected = logradouroSelected;
     }
 
-
-
     public LogradouroDAO getLogradouroDAO() {
         return logradouroDAO;
     }
@@ -181,9 +177,6 @@ public class LogradouroFaces implements Serializable {
         this.logradouroDAO = logradouroDAO;
     }
 
-
-
-
     public List<Logradouro> getCachedLogradouros() {
         if (cachedLogradouros == null) {
             this.cachedLogradouros = logradouroDAO.getLogradouros();
@@ -191,10 +184,12 @@ public class LogradouroFaces implements Serializable {
         return cachedLogradouros;
     }
 
-
     public void setCachedLogradouros(List<Logradouro> cachedLogradouros) {
         this.cachedLogradouros = cachedLogradouros;
     }
+
+
+
 
 
     public void rowSelect(SelectEvent e) {
@@ -202,18 +197,41 @@ public class LogradouroFaces implements Serializable {
     }
 
 
+    public void onRowSelect(SelectEvent event) {
+        logradouroSelected = (Logradouro) event.getObject();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(new UtilFaces().getContexto() + "/logradouro/logradouro.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+
+
+
+    //Método pré Create/Update
+    public String doSaveOrUpdateLogradouro() {
+        if (logradouroSelected.getCodigoLogra() == null || logradouroSelected.getCodigoLogra() == 0) {
+            return dofinishAddLogradouro();
+        } else {
+            return dofinishUpdateLogradouro();
+        }
+    }
+
+
+
+    //Métodos Create
     public String doAddLogradouro() {
-        int usuario = new jcUtil().getUsuarioLogadoBean().getUsuCodigo();
-        int setor = new jcUtil().getSetorLogadoBean().getSetCodigo();
+//        int usuario = new jcUtil().getUsuarioLogadoBean().getUsuCodigo();
+//        int setor = new jcUtil().getSetorLogadoBean().getSetCodigo();
         logradouroSelected = new Logradouro ();
         listLogradouros = logradouroDAO.getLogradouros();
         return "logradouro";
     }
 
     public String dofinishAddLogradouro() {
-        Date date = new Date();
-        logradouroSelected.setDtaHoraAtualizacao(date);
+//        Date date = new Date();
+//        logradouroSelected.setDtaHoraAtualizacao(date);
         logradouroDAO.addLogradouro(logradouroSelected);
         cachedLogradouros = null;
         if (MensagensErros.isErro()) {
@@ -223,24 +241,7 @@ public class LogradouroFaces implements Serializable {
         }
     }
 
-    public String doSaveOrUpdateLogradouro() {
-        if (logradouroSelected.getCodigoLogra() == null || logradouroSelected.getCodigoLogra() == 0) {
-            return dofinishAddLogradouro();
-        } else {
-            return dofinishUpdateLogradouro();
-        }
-    }
-
-    public String doRemoveLogradouro() {
-        logradouroDAO.removeLogradouro(logradouroSelected);
-        cachedLogradouros = null;
-        if (MensagensErros.isErro()) {
-            return "";
-        } else {
-            return "logradouroList";
-        }
-    }
-
+    //Métodos Update
     public String doUpdateLogradouro() {
         LogradouroDAO lograDAO = new LogradouroDAO();
         logradouro = lograDAO.getLogradouro(logradouroSelected.getCodigoLogra());
@@ -265,18 +266,24 @@ public class LogradouroFaces implements Serializable {
         }
     }
 
-    public String doCancelLogradouro() {
+
+
+
+
+    //Método Remove
+    public String doRemoveLogradouro() {
+        logradouroDAO.removeLogradouro(logradouroSelected);
         cachedLogradouros = null;
-        return "logradouroList";
-    }
-
-    public int getSizeListLogradouros(){
-        if (listLogradouros == null){
-            return 0;
+        if (MensagensErros.isErro()) {
+            return "";
+        } else {
+            return "logradouroList";
         }
-        return listLogradouros.size();
     }
 
+
+
+    //Método Read
     public void buscaLogradourosList() {
         listLogradouros = new ArrayList<>();
         if (jcUtil.isEmpty(optionSearchSelected)) {
@@ -301,19 +308,43 @@ public class LogradouroFaces implements Serializable {
         listLogradouros = new LogradouroDAO().getLogradouroByClausula(claEndereco+" and "+claCodigo);
     }
 
-    public void onRowSelect(SelectEvent event) {
-        logradouroSelected = (Logradouro) event.getObject();
+    public List<Logradouro> lograBuscaAutoComplete(String busca) {
+        busca = busca.replace(" - ", "");
+        Session ses = HibernateUtil.getSessionFactory().openSession();
+        List<Logradouro> lista = new ArrayList<>();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect(new UtilFaces().getContexto() + "/logradouro/logradouro.xhtml");
-        } catch (IOException e) {
-            e.printStackTrace();
+            String sql = "SELECT * FROM logradouro WHERE enderecoLogra like '%" + busca + "%' ORDER BY enderecoLogra";
+
+            Query q = ses.createNativeQuery(sql, Logradouro.class);
+
+            lista = q.list();
+
+            return lista;
+
+        } catch (Exception e) {
+            MensagensErros.setMsgErro(e.getMessage());
+            return null;
+        } finally {
+            ses.close();
         }
     }
 
-    public String doCancelUsuario() {
+
+
+    //Outros Métodos
+    public String doCancelLogradouro() {
         cachedLogradouros = null;
         return "logradouroList";
     }
+
+    public int getSizeListLogradouros(){
+        if (listLogradouros == null){
+            return 0;
+        }
+        return listLogradouros.size();
+    }
+
+
 
     public void cleanSession() {
         jcUtil.removeSessao("usuario");

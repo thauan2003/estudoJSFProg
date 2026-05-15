@@ -16,7 +16,8 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(value="SetorConverter")
 public class SetorConverter  implements Converter{
 
-    private SetorDAO setorDAO =new SetorDAO();
+    private SetorDAO setorDAO = new SetorDAO();
+
     public SetorConverter(){
     }
 
